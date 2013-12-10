@@ -15,6 +15,17 @@ $(window).load(function() {
 
 $(document).ready(function () {
 
+  // Expandable blocks
+  
+  $(".expandable").each(function() {
+    var trigger = $(this).find(".trigger");
+    var expandable = $(this);
+    trigger.click(function() {
+      expandable.toggleClass("expandable-expanded")
+      expandable.find(".expandable-content").slideToggle(250);
+    })
+  });
+
   if ($("input:checkbox").length) {
     $("input:checkbox").iCheck()
   }
@@ -64,7 +75,57 @@ $(document).ready(function () {
   
   if ($(".tab[rel='" + locationHash + "']").length) {
     $(".tab[rel='" + locationHash + "']").click();
-  } 
+  }
+  
+  // Tabs prev/next
+  
+    if ($(this).find(".tabs-nav").length) {
+      $(".tabbed-content").each(function() {
+        var prev = $(this).find(".tabs-nav .prev");
+        var next = $(this).find(".tabs-nav .next");
+        
+        var tabs = $(this).find(".tabs");
+        
+        if (tabs.find(".act").prev(".tab").length) {
+          prev.show();
+          prev.find("span").html(tabs.find(".act").prev(".tab").find("span").html());
+        } else {
+          prev.hide();
+        }
+        
+        if (tabs.find(".act").next(".tab").length) {
+          next.show();
+          next.find("span").html(tabs.find(".act").next(".tab").find("span").html());
+        } else {
+          next.hide();
+        }
+        
+        prev.click(function() {
+          tabs.find(".act").prev(".tab").click();
+          if (tabs.find(".act").prev(".tab").length) {
+            next.show();
+            $(this).find("span").html(tabs.find(".act").prev(".tab").find("span").html());
+            next.find("span").html(tabs.find(".act").next(".tab").find("span").html());
+          } else {
+            $(this).hide();
+            next.find("span").html(tabs.find(".act").next(".tab").find("span").html());
+          }
+        });
+        
+        next.click(function() {
+          tabs.find(".act").next(".tab").click();
+          if (tabs.find(".act").next(".tab").length) {
+            prev.show();
+            $(this).find("span").html(tabs.find(".act").next(".tab").find("span").html());
+            prev.find("span").html(tabs.find(".act").prev(".tab").find("span").html());
+          } else {
+            $(this).hide();
+            prev.find("span").html(tabs.find(".act").prev(".tab").find("span").html());
+          }
+        })
+        
+      });
+    }
 
   // Mainpage projects jcarousel
   
@@ -432,6 +493,42 @@ function validateForms() {
         }
     },
   });
+  
+  var validatorЫupport = $("#supportForm").bind("invalid-form.validate", function() {
+  	    
+    }).validate({
+    focusInvalid: false,
+    sendForm : false,
+    rules: {
+      support_email: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      support_name: "Заполните это поле!",
+      support_email: "Введите правильный адрес!",
+      support_phone: "Заполните это поле!"
+    },
+    errorPlacement: function(error, element) {
+      // element.parents(".input-wrapper").addClass("input-wrapper-error");
+      error.insertAfter(element).wrap("<div class='error-wrapper' />");
+      element.prev(".placeholder").addClass("placeholder-error")
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
+      $(element).removeClass(errorClass);
+      $(element).next(".error-wrapper").remove();
+      $(element).prev(".placeholder").removeClass("placeholder-error");
+    },
+    invalidHandler: function(form, validatorcalc) {
+        var errors = validatorcalc.numberOfInvalids();
+        if (errors) {                    
+            validatorcalc.errorList[0].element.focus();
+        }
+    },
+  });
+  
   
   var validatorEventRequest = $("#eventRequestForm").bind("invalid-form.validate", function() {
   	    
