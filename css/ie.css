@@ -1,0 +1,33 @@
+﻿.sponsors-item .cont,
+.sponsors-item a {
+  text-align:left;
+}
+
+.sponsors-item img {
+  margin-left:15px;
+}
+
+.clients-list-item .pic {
+  overflow:hidden;
+}
+
+.clients-list-item .pic .cont,
+.licences-list-item .pic .cont {
+  text-align:left;
+  padding:0 0 0 20px;
+}
+
+.clients-list-item .pic a,
+.licences-list-item .pic a {
+  text-align:left;
+}
+
+.documents a .cont img {
+  width:200px;
+}
+
+.project-header .client-info .pic .cont,
+.project-header .client-info .pic a {
+  text-align:left;
+  padding:0 0 0 10px;
+}

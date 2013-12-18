@@ -13,7 +13,74 @@ $(window).load(function() {
   })
 });
 
+$(window).scroll(function() {
+  if ($(".fixed-nav-placeholder").length) {
+    if ($(".m-col").outerHeight(true) > $(".l-col").outerHeight(true)) {
+      if ($(window).scrollTop() > parseInt($(".fixed-nav-placeholder").offset().top - 40)) {
+        $(".fixed-nav-wrapper").addClass("nav-fixed").css({
+          position: "fixed",
+          top: 40
+        });
+        if ($(".fixed-nav-wrapper").offset().top >= $(".footer").offset().top - $(".fixed-nav-wrapper").outerHeight(true) - 50) {
+          $(".fixed-nav-wrapper").addClass("nav-abs").removeClass("nav-fixed").css({
+            position: "absolute",
+            top: $(".m-col").outerHeight(true) - $(".fixed-nav-wrapper").outerHeight(true)
+          });
+        } 
+
+        if ($(window).scrollTop() < $(".nav-abs").offset().top - 40) {
+          $(".fixed-nav-wrapper").removeClass("nav-abs").addClass("nav-fixed").css({
+            position: "fixed",
+            top: 40
+          });
+        }
+      } else {
+        $(".fixed-nav-wrapper").removeClass("nav-fixed").css({
+          position: "relative",
+          top: "auto"
+        });
+      }
+    } else {
+      $(".fixed-nav-wrapper").removeClass("nav-fixed").css({
+        position: "relative",
+        top: "auto"
+      });
+    }
+  }
+});
+
 $(document).ready(function () {
+
+  if ($("#cv_file").length) {
+    $("#cv_file").nicefileinput({ 
+      label : 'Загрузить резюме'
+    });
+  }
+  
+
+  // Anchors nav
+
+  $(".anchors-nav a").click(function() {
+    $("body,html").animate({
+      scrollTop: $("a[name="+$(this).attr("href").replace("#","")+"]").offset().top - 20
+    },1000);
+    return false;
+  });
+  
+  // Calendar navigation
+  
+  $(".calendar-nav .year").click(function() {
+    $(this).next(".monthes").slideToggle(250);
+    $(this).toggleClass("expanded");
+  })
+
+  // $(":last-child").addClass("last-child");
+
+  if ($(".categories-list").length) {
+    $(".categories-list .row").each(function() {
+      $(this).find(".categories-item").css("height",$(this).height() - 87)
+    })
+  }
 
   // Expandable blocks
   
@@ -140,6 +207,20 @@ $(document).ready(function () {
     scroll:4,
     wrap:'circular',
     initCallback: mpcInit
+  });
+  
+  // Documents-carousel
+  
+  $(".documents-carousel .jcarousel").jcarousel({
+    scroll:2,
+    wrap:'circular'
+  });
+  
+  // Success-carousel
+  
+  $(".success-carousel .jcarousel").jcarousel({
+    scroll:1,
+    wrap:'circular'
   });
 
   $(".button-order").click(function() {
@@ -313,6 +394,9 @@ function makeup() {
         if ($th.parents("p").length) {
           $th.parent().find("img").wrapAll('<div class="slider">');
         }
+        if (!$(this).prev().length) {
+          $(this).before("<div />")
+        }
         $th.prev().nextUntil(':not(img)').wrapAll('<div class="slider">');
         $th.parents(".slider").simpleSlider({
           width:530,
@@ -377,6 +461,44 @@ function validateForms() {
     },
   });
   
+  var validatorReview = $("#reviewForm").bind("invalid-form.validate", function() {
+  	    
+    }).validate({
+    focusInvalid: false,
+    sendForm : false,
+    rules: {
+      review_email: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      review_name: "Заполните это поле!",
+      review_email: "Введите правильный адрес!",
+      review_company: "Введите правильный адрес!",
+      review_post: "Введите правильный адрес!",
+      review_message: "Заполните это поле!"
+    },
+    errorPlacement: function(error, element) {
+      // element.parents(".input-wrapper").addClass("input-wrapper-error");
+      error.insertAfter(element).wrap("<div class='error-wrapper' />");
+      element.prev(".placeholder").addClass("placeholder-error")
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
+      $(element).removeClass(errorClass);
+      $(element).next(".error-wrapper").remove();
+      $(element).prev(".placeholder").removeClass("placeholder-error");
+    },
+    invalidHandler: function(form, validatorcalc) {
+        var errors = validatorcalc.numberOfInvalids();
+        if (errors) {                    
+            validatorcalc.errorList[0].element.focus();
+        }
+    },
+  });
+  
+  
   var validatorOrder = $("#orderPopupForm").bind("invalid-form.validate", function() {
   	    
     }).validate({
@@ -418,6 +540,49 @@ function validateForms() {
         }
     },
   });
+  
+  var validatorfeedback = $("#feedbackForm").bind("invalid-form.validate", function() {
+  	    
+    }).validate({
+    focusInvalid: false,
+    sendForm : false,
+    rules: {
+      feedback_email: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      feedback_name: "Заполните поле!",
+      feedback_email: "Введите правильный адрес!",
+      feedback_type: "Выберите категорию!",
+      feedback_message: "Заполните поле!"
+    },
+    errorPlacement: function(error, element) {
+      // element.parents(".input-wrapper").addClass("input-wrapper-error");
+      error.insertAfter(element).wrap("<div class='error-wrapper' />");
+      element.prev(".placeholder").addClass("placeholder-error")
+      if (element[0].tagName == "SELECT") {
+        element.parents(".form-item").find(".param-selector").addClass("param-sel-error")
+      }
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
+      $(element).removeClass(errorClass);
+      $(element).next(".error-wrapper").remove();
+      $(element).prev(".placeholder").removeClass("placeholder-error");
+      if ($(element)[0].tagName == "SELECT") {
+        $(element).parents(".form-item").find(".param-selector").removeClass("selector-error")
+      }
+    },
+    invalidHandler: function(form, validatorcalc) {
+        var errors = validatorcalc.numberOfInvalids();
+        if (errors) {                    
+            validatorcalc.errorList[0].element.focus();
+        }
+    },
+  });
+  
   
   var validatorCallback = $("#callbackPopupForm").bind("invalid-form.validate", function() {
   	    
@@ -494,7 +659,7 @@ function validateForms() {
     },
   });
   
-  var validatorЫupport = $("#supportForm").bind("invalid-form.validate", function() {
+  var validatorSupport = $("#supportForm").bind("invalid-form.validate", function() {
   	    
     }).validate({
     focusInvalid: false,
@@ -519,6 +684,54 @@ function validateForms() {
       // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
       $(element).removeClass(errorClass);
       $(element).next(".error-wrapper").remove();
+      $(element).prev(".placeholder").removeClass("placeholder-error");
+    },
+    invalidHandler: function(form, validatorcalc) {
+        var errors = validatorcalc.numberOfInvalids();
+        if (errors) {                    
+            validatorcalc.errorList[0].element.focus();
+        }
+    },
+  });
+  
+  var validatorcv = $("#cvForm").bind("invalid-form.validate", function() {
+  	    
+    }).validate({
+    ignore: [],
+    focusInvalid: false,
+    sendForm : false,
+    rules: {
+      cv_email: {
+        required: true,
+        email: true
+      },
+      cv_file: {
+        required: true
+      }
+    },
+    messages: {
+      cv_name: "Заполните это поле!",
+      cv_email: "Введите правильный адрес!",
+      cv_phone: "Заполните это поле!",
+      cv_file: "Загрузите резюме!"
+    },
+    errorPlacement: function(error, element) {
+      // element.parents(".input-wrapper").addClass("input-wrapper-error");
+      if (!element.hasClass("form-file")) {
+        error.insertAfter(element).wrap("<div class='error-wrapper' />");
+      } else {
+        error.appendTo(element.parents(".form-item")).wrap("<div class='error-wrapper' />");
+      }
+      element.prev(".placeholder").addClass("placeholder-error")
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
+      $(element).removeClass(errorClass);
+      if (!$(element).hasClass("form-file")) {
+        $(element).next(".error-wrapper").remove();
+      } else {
+        $(element).parents(".form-item").find(".error-wrapper").remove();
+      }
       $(element).prev(".placeholder").removeClass("placeholder-error");
     },
     invalidHandler: function(form, validatorcalc) {
