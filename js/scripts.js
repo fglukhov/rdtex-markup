@@ -386,12 +386,12 @@ function makeup() {
   if ($(".page-text img").length) {
     $('.page-text img').filter(function() {
         var $th = $(this);
-        return !$th.prev('img').length && !$(this).parents(".slider").length && ($th.parent().hasClass("page-text") || $th.parent("p").parent().hasClass("page-text")) && $(this).next('img').length;
+        return !$th.prev('img').length && !$(this).parents(".slider").length && ($th.parent().hasClass("page-text") || $th.parent("p").parent().hasClass("page-text") || $th.parent("div").parent().hasClass("page-text")) && $(this).next('img').length;
     }).each(function() {
         
       var $th = $(this);
       if (!$th.parents(".slider").length) {
-        if ($th.parents("p").length) {
+        if ($th.parents("p").length || $th.parents("div").length) {
           $th.parent().find("img").wrapAll('<div class="slider">');
         }
         if (!$(this).prev().length) {
