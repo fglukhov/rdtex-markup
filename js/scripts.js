@@ -51,6 +51,61 @@ $(window).scroll(function() {
 
 $(document).ready(function () {
 
+  $(".main-menu li").hover(function() {
+    $(".main-menu li").removeClass("sm-act")
+    var li = $(this);
+    var link = $(this).find("a");
+    var submenu = $(".submenu[rel='"+link.attr("rel")+"']");
+    if ($(".submenu[rel='"+link.attr("rel")+"']").length) {
+      $(this).addClass("sm-act")
+    }
+    link.addClass("hover")
+    if (link.attr("rel") && $(".submenu[rel='"+link.attr("rel")+"']").css("display") != "block") {
+      $(".submenu").hide();
+      $(".submenu-item").hide();
+      submenu.find(".submenu-item").eq(0).show();
+      submenu.find(".submenu-links .item").removeClass("act");
+      submenu.find(".submenu-links .item").eq(0).addClass("act");
+      
+      $(".submenu[rel='"+link.attr("rel")+"']").stop().fadeIn(250);
+      
+      $(window).mousemove(function() {
+        if (!link.hasClass("hover") && !$(".submenu[rel='"+link.attr("rel")+"']").hasClass("hover")) {
+          //$(".submenu[rel='"+link.attr("rel")+"']").fadeOut(250);
+          //li.removeClass("sm-act")
+        }
+      });
+      
+    }
+  },function() {
+    $(this).find("a").removeClass("hover");
+    
+  });
+  
+  $(".submenu").hover(function() {
+    $(this).addClass("hover");
+  },function() {
+    $(this).removeClass("hover");
+    var sm = $(this);
+    var smT = setTimeout(function() {
+      if (!$(".main-menu a[rel='"+sm.attr("rel")+"']").hasClass("hover")) {
+        //sm.fadeOut(250);
+        //$(".main-menu a[rel='"+sm.attr("rel")+"']").parents("li").removeClass("sm-act")
+      }
+    },400)
+  })
+  
+  $(".submenu-links .item").hover(function() {
+    
+    if (!$(this).hasClass("act")) {
+      $(".submenu-links .item").removeClass("act");
+      $(this).addClass("act");
+      
+      $(".submenu-item").hide();
+      $(".submenu-item[rel='"+$(this).attr("rel")+"']").fadeIn(250);
+    }
+  })
+
   if ($("#cv_file").length) {
     $("#cv_file").nicefileinput({ 
       label : 'Загрузить резюме'
