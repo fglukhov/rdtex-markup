@@ -191,16 +191,6 @@ $(document).ready(function () {
       
     });
     
-  });
-  
-  var locationHash = window.location.hash.replace("#","");
-  
-  if ($(".tab[rel='" + locationHash + "']").length) {
-    $(".tab[rel='" + locationHash + "']").click();
-  }
-  
-  // Tabs prev/next
-  
     if ($(this).find(".tabs-nav").length) {
       $(".tabbed-content").each(function() {
         var prev = $(this).find(".tabs-nav .prev");
@@ -246,8 +236,35 @@ $(document).ready(function () {
           }
         })
         
+        tabs.find(".tab").click(function() {
+          next.find("span").html($(this).next(".tab").find("span").html());
+          prev.find("span").html($(this).prev(".tab").find("span").html());
+          if ($(this).prev(".tab").length) {
+            prev.show();
+          } else {
+            prev.hide();
+          }
+          if ($(this).next(".tab").length) {
+            next.show();
+          } else {
+            next.hide();
+          }
+        })
+        
       });
     }
+    
+  });
+  
+  var locationHash = window.location.hash.replace("#","");
+  
+  if ($(".tab[rel='" + locationHash + "']").length) {
+    $(".tab[rel='" + locationHash + "']").click();
+  }
+  
+  // Tabs prev/next
+  
+    
 
   // Mainpage projects jcarousel
   
