@@ -4989,3 +4989,5 @@ table.timeline h3 {
   display:block;
   margin:6px 0;
 }
+
+#eventRequestForm .send-suc {color:#868373; padding-top: 5px; display: block; text-align: center; font-weight: bold;}

@@ -105,7 +105,6 @@ $(document).ready(function () {
       $(".submenu-item[rel='"+$(this).attr("rel")+"']").fadeIn(250);
     }
   })
-
   if ($("#cv_file").length) {
     $("#cv_file").nicefileinput({ 
       label : 'Загрузить резюме'
@@ -191,6 +190,7 @@ $(document).ready(function () {
       
     });
     
+  
     if ($(this).find(".tabs-nav").length) {
       $(".tabbed-content").each(function() {
         var prev = $(this).find(".tabs-nav .prev");
@@ -250,10 +250,9 @@ $(document).ready(function () {
             next.hide();
           }
         })
-        
+
       });
     }
-    
   });
   
   var locationHash = window.location.hash.replace("#","");
@@ -263,9 +262,6 @@ $(document).ready(function () {
   }
   
   // Tabs prev/next
-  
-    
-
   // Mainpage projects jcarousel
   
   $(".mainpage-projects .jcarousel").jcarousel({
@@ -492,363 +488,61 @@ function makeup() {
     
   }
   
-  
-  
 }
 
 function validateForms() {
   
-  var validatorQuestion = $("#questionForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      question_email: {
-        required: true,
-        email: true
-      }
-    },
-    messages: {
-      question_name: "Заполните это поле!",
-      question_email: "Введите правильный адрес!",
-      question_message: "Заполните это поле!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      element.prev(".placeholder").addClass("placeholder-error")
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      $(element).next(".error-wrapper").remove();
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
+  $(".common-form form").each(function() {
+    $(this).validate({
+      focusInvalid: false,
+      sendForm : false,
+      errorPlacement: function(error, element) {
+        // element.parents(".input-wrapper").addClass("input-wrapper-error");
+        if (element.attr("errortext")) {
+          error.html(element.attr("errortext"))
         }
-    },
-  });
-  
-  var validatorReview = $("#reviewForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      review_email: {
-        required: true,
-        email: true
-      }
-    },
-    messages: {
-      review_name: "Заполните это поле!",
-      review_email: "Введите правильный адрес!",
-      review_company: "Введите правильный адрес!",
-      review_post: "Введите правильный адрес!",
-      review_message: "Заполните это поле!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      element.prev(".placeholder").addClass("placeholder-error")
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      $(element).next(".error-wrapper").remove();
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
-        }
-    },
-  });
-  
-  
-  var validatorOrder = $("#orderPopupForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      order_email: {
-        required: true,
-        email: true
-      }
-    },
-    messages: {
-      order_name: "Заполните поле!",
-      order_email: "Введите правильный адрес!",
-      order_type: "Выберите категорию!",
-      order_message: "Заполните поле!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      element.prev(".placeholder").addClass("placeholder-error")
-      if (element[0].tagName == "SELECT") {
-        element.parents(".form-item").find(".param-selector").addClass("param-sel-error")
-      }
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      $(element).next(".error-wrapper").remove();
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-      if ($(element)[0].tagName == "SELECT") {
-        $(element).parents(".form-item").find(".param-selector").removeClass("selector-error")
-      }
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
-        }
-    },
-  });
-  
-  var validatorfeedback = $("#feedbackForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      feedback_email: {
-        required: true,
-        email: true
-      }
-    },
-    messages: {
-      feedback_name: "Заполните поле!",
-      feedback_email: "Введите правильный адрес!",
-      feedback_type: "Выберите категорию!",
-      feedback_message: "Заполните поле!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      element.prev(".placeholder").addClass("placeholder-error")
-      if (element[0].tagName == "SELECT") {
-        element.parents(".form-item").find(".param-selector").addClass("param-sel-error")
-      }
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      $(element).next(".error-wrapper").remove();
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-      if ($(element)[0].tagName == "SELECT") {
-        $(element).parents(".form-item").find(".param-selector").removeClass("selector-error")
-      }
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
-        }
-    },
-  });
-  
-  
-  var validatorCallback = $("#callbackPopupForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      callback_email: {
-        required: true,
-        email: true
-      }
-    },
-    messages: {
-      callback_name: "Заполните поле!",
-      callback_phone: "Заполните поле!",
-      callback_type: "Выберите категорию!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      element.prev(".placeholder").addClass("placeholder-error")
-      if (element[0].tagName == "SELECT") {
-        element.parents(".form-item").find(".param-selector").addClass("param-sel-error")
-      }
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      $(element).next(".error-wrapper").remove();
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-      if ($(element)[0].tagName == "SELECT") {
-        $(element).parents(".form-item").find(".param-selector").removeClass("selector-error")
-      }
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
-        }
-    },
-  });
-  
-  var validatorRequest = $("#requestPopupForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      request_email: {
-        required: true,
-        email: true
-      }
-    },
-    messages: {
-      request_name: "Заполните это поле!",
-      request_email: "Введите правильный адрес!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      element.prev(".placeholder").addClass("placeholder-error")
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      $(element).next(".error-wrapper").remove();
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
-        }
-    },
-  });
-  
-  var validatorSupport = $("#supportForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      support_email: {
-        required: true,
-        email: true
-      }
-    },
-    messages: {
-      support_name: "Заполните это поле!",
-      support_email: "Введите правильный адрес!",
-      support_phone: "Заполните это поле!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      element.prev(".placeholder").addClass("placeholder-error")
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      $(element).next(".error-wrapper").remove();
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
-        }
-    },
-  });
-  
-  var validatorcv = $("#cvForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    ignore: [],
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      cv_email: {
-        required: true,
-        email: true
-      },
-      cv_file: {
-        required: true
-      }
-    },
-    messages: {
-      cv_name: "Заполните это поле!",
-      cv_email: "Введите правильный адрес!",
-      cv_phone: "Заполните это поле!",
-      cv_file: "Загрузите резюме!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      if (!element.hasClass("form-file")) {
         error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      } else {
-        error.appendTo(element.parents(".form-item")).wrap("<div class='error-wrapper' />");
-      }
-      element.prev(".placeholder").addClass("placeholder-error")
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      if (!$(element).hasClass("form-file")) {
+        element.prev(".placeholder").addClass("placeholder-error")
+        if (element[0].tagName == "SELECT") {
+          element.parents(".form-item").find(".param-selector").addClass("param-sel-error")
+        }
+      },
+      unhighlight: function(element, errorClass, validClass) {
+        // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
+        $(element).removeClass(errorClass);
         $(element).next(".error-wrapper").remove();
-      } else {
-        $(element).parents(".form-item").find(".error-wrapper").remove();
-      }
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
+        $(element).prev(".placeholder").removeClass("placeholder-error");
+        if ($(element)[0].tagName == "SELECT") {
+          $(element).parents(".form-item").find(".param-selector").removeClass("selector-error")
         }
-    },
-  });
-  
-  
-  var validatorEventRequest = $("#eventRequestForm").bind("invalid-form.validate", function() {
-  	    
-    }).validate({
-    focusInvalid: false,
-    sendForm : false,
-    rules: {
-      event_request_email: {
-        required: true,
-        email: true
+      },
+      invalidHandler: function(form, validatorcalc) {
+          var errors = validatorcalc.numberOfInvalids();
+          if (errors && validatorcalc.errorList[0].element.tagName == "INPUT") {                    
+              validatorcalc.errorList[0].element.focus();
+          }
       }
-    },
-    messages: {
-      event_request_name: "Заполните это поле!",
-      event_request_email: "Введите правильный адрес!"
-    },
-    errorPlacement: function(error, element) {
-      // element.parents(".input-wrapper").addClass("input-wrapper-error");
-      error.insertAfter(element).wrap("<div class='error-wrapper' />");
-      element.prev(".placeholder").addClass("placeholder-error")
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      // $(element).parents(".input-wrapper").removeClass("input-wrapper-error");
-      $(element).removeClass(errorClass);
-      $(element).next(".error-wrapper").remove();
-      $(element).prev(".placeholder").removeClass("placeholder-error");
-    },
-    invalidHandler: function(form, validatorcalc) {
-        var errors = validatorcalc.numberOfInvalids();
-        if (errors) {                    
-            validatorcalc.errorList[0].element.focus();
+    });
+    
+    if ($(this).find(".form-email").length) {
+      $(this).find(".form-email").rules('add', {
+        email: true,
+        messages: {
+          required:  "Введите правильный адрес!"
         }
-    },
-  });
-  
+      });
+    }
+    
+    if ($(this).find(".form-date").length) {
+      $(this).find(".form-date").rules('add', {
+        messages: {
+          required:  "Выберите дату!"
+        }
+      });
+    }
+    
+    
+  });  
   
 }
 
@@ -1162,3 +856,23 @@ function openPopup(pupId) {
 function mpcInit(carousel,state) {
   carousel.list.css("width",5000)
 }
+
+jQuery.extend(jQuery.validator.messages, {
+    required: "Заполните поле!",
+    remote: "Please fix this field.",
+    email: "Введите правильный e-mail",
+    url: "Please enter a valid URL.",
+    date: "Please enter a valid date.",
+    dateISO: "Please enter a valid date (ISO).",
+    number: "Please enter a valid number.",
+    digits: "Please enter only digits.",
+    creditcard: "Please enter a valid credit card number.",
+    equalTo: "Please enter the same value again.",
+    accept: "Please enter a value with a valid extension.",
+    maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
+    minlength: jQuery.validator.format("Please enter at least {0} characters."),
+    rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
+    range: jQuery.validator.format("Please enter a value between {0} and {1}."),
+    max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
+    min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
+});

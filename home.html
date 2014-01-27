@@ -1037,11 +1037,11 @@
         <form action="." id="orderPopupForm">
           <div class="form-item">
             <label class="placeholder" for="order_name">Ваше имя</label>
-            <input type="text" class="form-text" name="order_name" id="order_name" required />
+            <input type="text" class="form-text" name="order_name" id="order_name" errortext="Введите ваше имя" required />
           </div>
           <div class="form-item">
             <label class="placeholder" for="order_email">E-mail</label>
-            <input type="text" class="form-text" name="order_email" id="order_email" required />
+            <input type="text" class="form-text form-email" name="order_email" id="order_email" required />
           </div>
           <div class="form-item">
             <select class="form-select hide-ttl" name="order_type" id="order_type" required >
