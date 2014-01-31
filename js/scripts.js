@@ -10,7 +10,15 @@ $(window).load(function() {
   });
   $(".article-pic").each(function() {
     $(this).css("width",$(this).find("img").width());
-  })
+  });
+  
+  // Mainpage clients jcarousel
+  
+  $(".mainpage-clients .jcarousel").jcarousel({
+    scroll:4,
+    wrap:'circular',
+    initCallback: mpcInit
+  });
 });
 
 $(window).scroll(function() {
@@ -51,7 +59,7 @@ $(window).scroll(function() {
 
 $(document).ready(function () {
 
-  $(".main-menu li").hover(function() {
+  $(".main-menu li").on("mouseenter",function() {
     $(".main-menu li").removeClass("sm-act")
     var li = $(this);
     var link = $(this).find("a");
@@ -59,41 +67,30 @@ $(document).ready(function () {
     if ($(".submenu[rel='"+link.attr("rel")+"']").length) {
       $(this).addClass("sm-act")
     }
-    link.addClass("hover")
     if (link.attr("rel") && $(".submenu[rel='"+link.attr("rel")+"']").css("display") != "block") {
-      $(".submenu").hide();
+      $(".submenu").hide().removeClass("submenu-open");
       $(".submenu-item").hide();
       submenu.find(".submenu-item").eq(0).show();
       submenu.find(".submenu-links .item").removeClass("act");
       submenu.find(".submenu-links .item").eq(0).addClass("act");
       
-      $(".submenu[rel='"+link.attr("rel")+"']").stop().fadeIn(250);
-      
-      $(window).mousemove(function() {
-        if (!link.hasClass("hover") && !$(".submenu[rel='"+link.attr("rel")+"']").hasClass("hover")) {
-          $(".submenu[rel='"+link.attr("rel")+"']").fadeOut(250);
-          li.removeClass("sm-act")
-        }
-      });
+      submenu.stop().fadeIn(250).addClass("submenu-open");
       
     }
-  },function() {
-    $(this).find("a").removeClass("hover");
-    
   });
   
-  $(".submenu").hover(function() {
-    $(this).addClass("hover");
-  },function() {
-    $(this).removeClass("hover");
-    var sm = $(this);
-    var smT = setTimeout(function() {
-      if (!$(".main-menu a[rel='"+sm.attr("rel")+"']").hasClass("hover")) {
-        sm.fadeOut(250);
-        $(".main-menu a[rel='"+sm.attr("rel")+"']").parents("li").removeClass("sm-act")
-      }
-    },400)
-  })
+  $("body").mousemove(function() {
+    $(".submenu-open").fadeOut(250).removeClass("submenu-open");
+    $(".main-menu .sm-act").removeClass("sm-act")
+  });
+  
+  $(".main-menu").on("mousemove","li.sm-act",function(e) {  
+    e.stopPropagation();
+  });
+  
+  $(".submenu").mousemove(function(e) {
+    e.stopPropagation();
+  });
   
   $(".submenu-links .item").hover(function() {
     
@@ -269,13 +266,7 @@ $(document).ready(function () {
     wrap:'circular'
   });
   
-  // Mainpage clients jcarousel
   
-  $(".mainpage-clients .jcarousel").jcarousel({
-    scroll:4,
-    wrap:'circular',
-    initCallback: mpcInit
-  });
   
   // Documents-carousel
   
@@ -287,10 +278,9 @@ $(document).ready(function () {
   // Success-carousel
   
   $(".success-carousel .jcarousel").jcarousel({
-    scroll:1,
-    wrap:'circular'
+    scroll:1
   });
-
+  
   $(".button-order").click(function() {
     openPopup("orderPopup")
   });
@@ -388,13 +378,13 @@ $(document).ready(function () {
 
 function makeup() {
   
-  $("ol li").each(function() {
+  $("ol").children("li").each(function() {
     if (!$(this).children(".li-cont").length) {
       $(this).html("<div class='li-cont'>"+$(this).html()+"</div>")
     }
   });
   
-  $("ol.alternate li").each(function() {
+  $("ol.alternate").children("li").each(function() {
     if (!$(this).find(".num").length) {
       var index = parseInt($(this).prevAll("li").length,10);
       index += 1;
@@ -776,15 +766,25 @@ function openPopup(pupId) {
           } else {
             flag = "";
           }
-          if ($(this).val() != select.val()/* || select.attr("ttl")*/) {
-            dropdown.append("<div val='" + $(this).attr("value") + "'>" + flag + $(this).html() + "</div>");
+          
+          if (select.find("option").length <= 2) {
+          
+            if ($(this).val() != select.val() /* || select.attr("ttl")*/) {
+              dropdown.append("<div val='" + $(this).attr("value") + "'>" + flag + $(this).html() + "</div>");
+            } else {
+              dropdown.append("<div style='display:none' val='" + $(this).attr("value") + "'>" + flag + $(this).html() + "</div>");
+            }
+            
           } else {
-            dropdown.append("<div style='display:none' val='" + $(this).attr("value") + "'>" + flag + $(this).html() + "</div>");
+            dropdown.append("<div val='" + $(this).attr("value") + "'>" + flag + $(this).html() + "</div>");
           }
+          
         });
       
       
-        paramSel.click(function() {
+        paramSel.on("click",function() {
+          $(this).parents(".common-form").find(".form-item").css("z-index",1);
+          $(this).parents(".form-item").css("z-index",10);
           if (!select.is(":disabled")) {
             if (dropdown.css("display") != "block") {
               $(".dropdown").fadeOut(150);
@@ -793,9 +793,9 @@ function openPopup(pupId) {
               selector.addClass("param-open");
               var maxWidth = 0;
               
-              // $(this).parents(".form-item").prevAll(".form-item").css("z-index","6000");
-              // $(this).parents(".form-item").css("z-index","6001");
-              // $(this).parents(".form-item").nextAll(".form-item").css("z-index","6000");
+              $(this).parents(".form-item").prevAll(".form-item").css("z-index","100");
+              $(this).parents(".form-item").css("z-index","1000");
+              $(this).parents(".form-item").nextAll(".form-item").css("z-index","100");
               
               dropdown.find("div").each(function () {
                 if ($(this).width() >= maxWidth) {
@@ -824,7 +824,7 @@ function openPopup(pupId) {
           }
         });
         
-        dropdown.find("div").click(function () {
+        dropdown.on("click", "div", function() {
           selector.removeClass("param-sel-error");
           paramSel.removeClass("initial");
           var div = $(this);
@@ -838,13 +838,13 @@ function openPopup(pupId) {
             dropdown.find("div[val='']").remove();
           }
           dropdown.fadeOut(150, function () {
-            dropdown.find("div").show().removeClass("selected");
+            dropdown.find("div").show().removeClass("selected").removeClass("hidden");
+            if (select.find("option").length <= 2) {
+              div.addClass("hidden")
+            }
             div.addClass("selected");
             div.parents(".param-open").removeClass("param-open");
           });
-          if ($(this).attr("val")) {
-            selector.parents(".form-item").find(".error-wrapper").remove();
-          }
         });
       
       }

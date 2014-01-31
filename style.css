@@ -190,6 +190,20 @@ ol.alternate h3 {
   margin:0 0 7px 0;
 }
 
+ol li ul {
+  margin-top:25px;
+}
+
+ol ul li,
+ol.alternate ul li {
+  background: url(images/bullet.gif) 0 8px no-repeat;
+  margin: 0 0 15px 0;
+  padding: 0 0 0 19px;
+  color:#606060;
+  font-weight:normal;
+  min-height:0;
+}
+
 blockquote {
   margin:20px 0 30px 0;
 }
@@ -568,27 +582,38 @@ tr:nth-child(odd) {
 }
 
 .main-menu {
-  background:url(images/wave.png) 0 0 repeat-x;
   margin:29px 0 0 0;
   font-size:12px;
   text-transform:uppercase;
   font-weight:bold;
+  background:url(images/wave.png) 0 0 repeat-x;
 }
 
 .main-menu ul {
+  display:table;
+  width:100%;
   margin:0;
+}
+
+.main-menu ul:after {
+  display:none;
 }
 
 .main-menu li {
   background:url(images/mm-sep.gif) 0 32px no-repeat;
-  float:left;
-  padding:29px 12px;
+  padding:29px 11px;
   margin:0;
+  display:table-cell;
 }
 
 .main-menu li:first-child {
   background:none;
   padding:29px 12px 29px 0;
+  text-align:right;
+}
+
+.main-menu li:last-child {
+  padding-right:0;
 }
 
 .main-menu a,
@@ -910,7 +935,11 @@ tr:nth-child(odd) {
 }
 
 .common-form .param-selector div.selected {
-  display:none !important;
+  background-color:#dcdcdc;
+}
+
+.common-form .param-selector div.hidde {
+  display:none;
 }
 
 .common-form .param-selector .arr {
@@ -1222,7 +1251,7 @@ tr:nth-child(odd) {
 .main-slider .slider-controls .cont {
   border:4px solid #ffe33d;
   background-color:#ffe33d;
-  cursor:pointer;
+  /* cursor:pointer; */
   color:#423f49;
   font-size:14px;
   line-height:19px;
@@ -1606,23 +1635,33 @@ hr.circles {
 .mainpage-clients .jcarousel-clip {
   width:980px;
   overflow:hidden;
-  height:88px;
-}
-
-.mainpage-clients .cont {
-  display:table-cell;
-  height:88px;
-  vertical-align:middle;
+  height:100px;
 }
 
 .mainpage-clients img {
-  max-height:88px;
+  max-width:135px;
+  max-height:100px;
 }
 
 .mainpage-clients .jcarousel-item {
-  padding:0;
-  background:none;
-  margin:0 60px 0 0;
+  width: 163px;
+  height: 100px;
+  padding: 0;
+  background: none;
+}
+
+.mainpage-clients .jcarousel-item .cont {
+  display: table-cell;
+  width: 162px;
+  height: 100px;
+  border-left: 1px solid #e4e4e4;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mainpage-clients .jcarousel-item:last-child .cont {
+  width: 161px;
+  border-right: 1px solid #e4e4e4;
 }
 
 .mainpage-clients .jcarousel-prev {
@@ -1634,7 +1673,8 @@ hr.circles {
   background-repeat:no-repeat;
   cursor:pointer;
   left: -63px;
-  top: 24px;
+  top: 50%;
+  margin-top:-20px;
 }
 
 .mainpage-clients .jcarousel-prev:hover {
@@ -1650,7 +1690,8 @@ hr.circles {
   background-repeat:no-repeat;
   cursor:pointer;
   right:-63px;
-  top:24px;
+  top: 50%;
+  margin-top:-20px;
 }
 
 .mainpage-clients .jcarousel-next:hover {
@@ -4199,6 +4240,11 @@ table.timeline h3 {
   background-position:-40px -40px;
 }
 
+.success-carousel .jcarousel-prev-disabled,
+.success-carousel .jcarousel-next-disabled {
+  display:none !important;
+}
+
 .success-list {
   margin:0 -10px 0 0;
 }
@@ -4989,5 +5035,88 @@ table.timeline h3 {
   display:block;
   margin:6px 0;
 }
-
 #eventRequestForm .send-suc {color:#868373; padding-top: 5px; display: block; text-align: center; font-weight: bold;}
+
+.solutions_results h3 {
+  text-transform:none;
+  font-size:18px;
+}
+
+.calc-form {
+  border:3px solid #ffe23d;
+  padding:20px;
+}
+
+.calc-form .form-item {
+  margin:0 0 20px 0;
+}
+
+.calc-form label {
+  float: left;
+  width: 228px;
+  margin: 0 20px 0 0;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 1px 0 0 0;
+}
+
+.calc-form .param-selector,
+.calc-form .form-textarea,
+.calc-form .form-text {
+  float:left;
+}
+
+.calc-form .param-selector {
+  height:33px;
+}
+
+.calc-form .param-selector .dropdown {
+  min-width:0;
+  top:33px;
+}
+
+.calc-form .param-sel {
+  height:33px;
+}
+
+.calc-form .param-sel .sel-value {
+  width:132px;
+  height:29px;
+  line-height:30px;
+}
+
+.calc-form .param-selector .arr {
+  background: url(images/sel-arrow-alt.png) 0 0 no-repeat;
+  width: 29px;
+  height: 29px;
+  right: 0px;
+  top: 0px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.calc-form .select-alt-wrapper .sel-value {
+  width:202px;
+}
+
+.calc-form .form-text,
+.calc-form .form-textarea {
+  width:236px;
+  text-transform:none;
+  color:#423f49;
+  font-weight:normal;
+  font-size:13px;
+}
+
+.calc-form .form-footer {
+  padding:0 0 0 248px;
+}
+
+.calc-form .form-submit {
+  float:left;
+  padding:0 28px;
+}
+
+.calc-form .param-selector .dropdown div {
+  padding: 7px 10px;
+}
