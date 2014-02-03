@@ -59,6 +59,11 @@ $(window).scroll(function() {
 
 $(document).ready(function () {
 
+  $(".support-calc-form select").change(function() {
+    $(".support-calc-form div.button").removeClass("button-disabled");
+    $(".support-calc-form .form-submit").prop("disabled",false);
+  })
+
   $(".main-menu li").on("mouseenter",function() {
     $(".main-menu li").removeClass("sm-act")
     var li = $(this);
@@ -399,6 +404,11 @@ function makeup() {
       divBtn.attr("class",$(this).attr("class")).attr("id",$(this).attr("id")).html("<span>" + $(this).val() + "</span>");
       $(this).after(divBtn);
       $(this).hide();
+      
+      if ($(this).is(":disabled")) {
+        divBtn.addClass("button-disabled")
+      }
+      
       divBtn.on("click",function () {
         submit.click();
       });
@@ -406,15 +416,22 @@ function makeup() {
     
   });
 
-  $("input:text, textarea").each(function() {
+  $("input:text, input:password, textarea").each(function() {
     $(this).addClass("initial");
     
     if ($(this).prop("tagName") == "INPUT") {
       // if (!$(this).parents(".input-wrapper").length) $(this).wrap("<div class='input-wrapper'></div>");
-      $(this).focus(function() {
-        $(this).removeClass("initial");
-        $(this).parents(".form-item").find(".placeholder").hide();
-      });
+      if ($(this).hasClass("form-phone")) {
+        $(this).focus(function() {
+          $(this).removeClass("initial");
+          $(this).parents(".form-item").find(".placeholder").hide();
+        });
+      } else {
+        $(this).keydown(function() {
+          $(this).removeClass("initial");
+          $(this).parents(".form-item").find(".placeholder").hide();
+        });
+      }
       $(this).blur(function() {
         $(this).prev().prev(".placeholder").hide();
         if (!$(this).val()) {
@@ -444,16 +461,13 @@ function makeup() {
   if ($(".page-text img").length) {
     $('.page-text img').filter(function() {
         var $th = $(this);
-        return !$th.prev('img').length && !$(this).parents(".slider").length && ($th.parent().hasClass("page-text") || $th.parent("p").parent().hasClass("page-text") || $th.parent("div").parent().hasClass("page-text")) && $(this).next('img').length;
+        return !$th.parents(".pic").length && !$th.prev('img').length && !$(this).parents(".slider").length && ($th.parent().hasClass("page-text") || $th.parent("p").parent().hasClass("page-text") || $th.parent("div").parent().hasClass("page-text")) && $th.next('img').length;
     }).each(function() {
         
       var $th = $(this);
       if (!$th.parents(".slider").length) {
-        if ($th.parents("p").length || $th.parents("div").length) {
+        if ($th.parent("p").parent().hasClass("page-content") || $th.parent("p").parent("div").hasClass("page-content")) {
           $th.parent().find("img").wrapAll('<div class="slider">');
-        }
-        if (!$(this).prev().length) {
-          $(this).before("<div />")
         }
         $th.prev().nextUntil(':not(img)').wrapAll('<div class="slider">');
         $th.parents(".slider").simpleSlider({
@@ -655,6 +669,7 @@ function openPopup(pupId) {
           $(this).parents(".slide").append("<div class='img-descr'>"+$(this).attr("title")+"</div>")
         }
       });
+      
       var items = $(this).children("div.slide");
       
       var sliderSize = items.length;

@@ -783,7 +783,7 @@ tr:nth-child(odd) {
   top:1px;
   height:36px;
   line-height:36px;
-  padding:0 15px;
+  padding:0 17px;
   text-transform:uppercase;
   font-weight:bold;
   color:#b4b4b4;
@@ -5119,4 +5119,110 @@ table.timeline h3 {
 
 .calc-form .param-selector .dropdown div {
   padding: 7px 10px;
+}
+
+.common-form label.error {
+  font-size:11px;
+  line-height:36px;
+  width:auto;
+  float:none;
+  padding:0;
+}
+
+.calc-form .expandable {
+  clear:left;
+  background:url(images/hr.png) 0 bottom repeat-x;
+  margin:0 0 20px 0;
+  padding:0 0 23px 0;
+}
+
+.calc-form .form-content .expandable:last-child {
+  background:none;
+  padding-bottom:0;
+}
+
+.calc-form .expandable .trigger {
+  cursor: pointer;
+  font-family: 'tondo_corpbold';
+  font-size: 18px;
+  color: #423f49;
+  position: relative;
+  float: left;
+  padding: 5px 33px 0 20px;
+  margin: -6px 0 0 -20px;
+  text-transform: uppercase;
+  height: 21px;
+}
+
+.calc-form .expandable .trigger span {
+  padding:0;
+  background:url(images/ul-g.png) 0 bottom repeat-x;
+}
+
+.calc-form .expandable .trigger .arr {
+  width:20px;
+  height:20px;
+  position:absolute;
+  right:3px;
+  top:3px;
+  background:url(images/expandable-arr.png) 0 0 no-repeat;
+}
+
+.calc-form .expandable-content {
+  clear:left;
+  padding:15px 0 0 0;
+}
+
+.calc-form .expandable-expanded .trigger {
+  background:#ffe23d;
+}
+
+.calc-form .expandable-expanded .trigger span {
+  background:none;
+}
+
+.calc-form .expandable-expanded .trigger .arr {
+  background-position:0 -20px;
+}
+
+.calc-form .expandable label {
+  width:297px;
+}
+
+.calc-form .expandable-expanded {
+  padding-bottom:7px;
+}
+
+.support-calc-form .form-footer-alt {
+  background:#ffe33e;
+  margin:0 -20px -20px -20px;
+  padding:20px;
+}
+
+.support-calc-form .form-footer-alt h3 {
+  font-size:20px;
+  margin:10px 0 19px 0;
+}
+
+.support-calc-form .form-footer-alt .form-text {
+  width:233px;
+}
+
+.support-calc-form .form-footer-alt .form-row {
+  margin:0 -20px 12px 0;
+}
+
+.support-calc-form .form-footer-alt .form-item {
+  width:233px;
+  float:left;
+  margin:0 17px 0 0;
+}
+
+.support-calc-form .form-text {
+  width:166px;
+}
+
+.button-disabled {
+  opacity:.5;
+  filter:alpha(opacity=50);
 }
