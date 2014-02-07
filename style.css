@@ -112,6 +112,43 @@ hr + h3 {
   margin-top:25px;
 }
 
+h4 {
+  color:#423f49;
+  font-family:Verdana,Helvetica;
+  font-size:13px;
+  line-height:15px;
+  margin:36px 0 11px 0;
+  text-transform:uppercase;
+  font-weight:bold;
+}
+
+h3 + h4 {
+  margin-top:22px;
+}
+
+hr + h4 {
+  margin-top:25px;
+}
+
+
+h5 {
+  color:#423f49;
+  font-family:Verdana,Helvetica;
+  font-size:13px;
+  line-height:15px;
+  margin:36px 0 11px 0;
+  text-transform:uppercase;
+  font-weight:bold;
+}
+
+h4 + h5 {
+  margin-top:22px;
+}
+
+hr + h5 {
+  margin-top:25px;
+}
+
 hr {
   height:6px;
   display:block;
@@ -4866,6 +4903,7 @@ table.timeline h3 {
   padding:0 0 5px 0;
   border-bottom:1px solid #ecebe2;
   font-style:italic;
+  font-weight:normal;
 }
 
 .submenu .subsections,
@@ -4952,6 +4990,7 @@ table.timeline h3 {
   border-top:1px solid #ecebe2;
   border-bottom:none;
   padding-top:12px;
+  font-weight:normal;
 }
 
 .submenu-price-link h4 a,
@@ -5110,7 +5149,7 @@ table.timeline h3 {
 }
 
 .calc-form .param-selector .arr {
-  background: url(images/sel-arrow-alt.png) 0 0 no-repeat;
+  background: url(/images/sel-arrow-alt.png) 0 0 no-repeat; 
   width: 29px;
   height: 29px;
   right: 0px;
@@ -5260,4 +5299,8 @@ table.timeline h3 {
   overflow:hidden;
   margin:0;
   padding:0 44px 0 0;
+}
+
+.controlDiv {
+  cursor:pointer;
 }

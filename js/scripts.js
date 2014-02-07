@@ -59,6 +59,11 @@ $(window).scroll(function() {
 
 $(document).ready(function () {
 
+  $(".video-wrapper .controlDiv").click(function() {
+    $(this).parents(".video-wrapper").find(".v-cont").html("<iframe width='470' height='286' src='"+$(this).attr("vid")+"?autoplay=1' frameborder='0' allowfullscreen></iframe>");
+    $(this).hide();
+  })
+
   $(".section-menu li .link a").each(function() {
     newHtml = $(this).html().replace("ТЕЛЕКОММУНИКАЦИОННЫЕ","ТЕЛЕКОММУНИКА-ЦИОННЫЕ")
     $(this).html(newHtml);
