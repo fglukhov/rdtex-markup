@@ -3543,11 +3543,13 @@ ol.alternate-2 h3 {
   background-position:0 -50px !important;
 }
 
-.clients-projects-list .data {
+.clients-projects-list .data,
+.reviews-item .data {
   margin:10px 0 20px 0;
 }
 
-.clients-projects-list .data span {
+.clients-projects-list .data span,
+.reviews-item .data span {
   display:block;
   float:left;
   font-size:10px;
@@ -3555,17 +3557,23 @@ ol.alternate-2 h3 {
   font-weight:bold;
 }
 
-.clients-projects-list .data .name {
+.clients-projects-list .data .name,
+.reviews-item .data .name {
   font-weight:bold;
   background-color:#ffe23d;
   padding:4px 5px;
   color:#3f3f47;
 }
 
-.clients-projects-list .data .date {
+.clients-projects-list .data .date,
+.reviews-item .data .date {
   color:#fff;
   background-color:#3f3f47;
   padding:4px 5px;
+}
+
+.reviews-item .data {
+  margin:0 0 10px 0;
 }
 
 .clients-projects-list h2 {
