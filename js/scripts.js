@@ -69,11 +69,11 @@ $(document).ready(function () {
     $(this).html(newHtml);
   });
 
-  if ($(".support-calc-form").length) {
+  if ($(".calc-form").length) {
     
-    $(".support-calc-form select").change(function() {
-      $(".support-calc-form div.button").removeClass("button-disabled");
-      $(".support-calc-form .form-submit").prop("disabled",false);
+    $(".calc-form select").change(function() {
+      $(".calc-form div.button").removeClass("button-disabled");
+      $(".calc-form .form-submit").prop("disabled",false);
     })
   
   }
@@ -694,7 +694,7 @@ function openPopup(pupId) {
     
     if (!slider.parents(".simple-slider").length) {
       slider.css("width",options.width);
-      // slider.css("height",options.height);
+      //slider.css("height",options.height);
       slider.wrap("<div class='simple-slider' />");
       slider.children().each(function() {
         $(this).wrap("<div class='slide'><div class='pic-wrapper'><div class='pic' style='width:"+options.width+"px;'></div></div></div>")
@@ -719,8 +719,12 @@ function openPopup(pupId) {
       items.hide();
       items.eq(0).addClass("current").show();
       
+      items.eq(0).find("img").attr("src",items.eq(0).find("img").attr("src")+ "?" + new Date().getTime());
+      
       items.eq(0).find("img").load(function() {
         slider.css("height",items.eq(0).find("img").height());
+        slider.find(".pic").css("height",items.eq(0).find("img").height());
+        slider.find(".pic img").css("max-height",items.eq(0).find("img").height());
       });
       
       
@@ -735,8 +739,8 @@ function openPopup(pupId) {
       var prevBtn = slider.parents(".simple-slider").find(".prev");
       var nextBtn = slider.parents(".simple-slider").find(".next");
       
-      prevBtn.css("top",options.height/2-24)
-      nextBtn.css("top",options.height/2-24)
+      // prevBtn.css("top",options.height/2-24)
+      // nextBtn.css("top",options.height/2-24)
       
       nextBtn.click(function() {
         curIndex = parseInt(slider.find(".current").attr("index"))
@@ -744,11 +748,11 @@ function openPopup(pupId) {
           curIndex++;
           items.eq(curIndex-1).fadeOut(250).removeClass("current");
           items.eq(curIndex).fadeIn(250).addClass("current");
-          slider.css("height",items.eq(curIndex).height());
+          // slider.css("height",items.eq(curIndex).height());
         } else {
           items.eq(curIndex).fadeOut(250).removeClass("current");
           items.eq(0).fadeIn(250).addClass("current");
-          slider.css("height",items.eq(0).height());
+          // slider.css("height",items.eq(0).height());
         }
         imgMarginTop = -items.eq(curIndex).find("img").height()/2+slider.height/2;
         if (imgMarginTop > 0) imgMarginTop = 0;
@@ -761,11 +765,11 @@ function openPopup(pupId) {
           curIndex--;
           items.eq(curIndex+1).fadeOut(250).removeClass("current");
           items.eq(curIndex).fadeIn(250).addClass("current");
-          slider.css("height",items.eq(curIndex).height());
+          // slider.css("height",items.eq(curIndex).height());
         } else {
           items.eq(curIndex).fadeOut(250).removeClass("current");
           items.eq(sliderSize-1).fadeIn(250).addClass("current");
-          slider.css("height",items.eq(sliderSize-1).height());
+          // slider.css("height",items.eq(sliderSize-1).height());
         }
         imgMarginTop = -items.eq(curIndex).find("img").height()/2+slider.height/2;
         if (imgMarginTop > 0) imgMarginTop = 0;
@@ -901,7 +905,7 @@ function openPopup(pupId) {
 })( jQuery );
 
 function mpcInit(carousel,state) {
-  carousel.list.css("width",5000)
+  // carousel.list.css("width",5000)
 }
 
 jQuery.extend(jQuery.validator.messages, {

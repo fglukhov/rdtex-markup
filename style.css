@@ -423,17 +423,34 @@ tr:nth-child(odd) {
 .simple-slider {
   position:relative;
   margin:0 0 27px 0;
-  height:300px;
+  /* height:400px; */
 }
 
 .simple-slider .slide {
   position:absolute;
 }
 
+.simple-slider .slider {
+  width:530px;
+  /* height:400px; */
+}
+
 .simple-slider img {
-  display:block;
+  /* display:block; */
   float:none;
   margin:0;
+  width:auto !important;
+  height:auto !important;
+  max-width:530px;
+  /* max-height:400px; */
+}
+
+.simple-slider .pic {
+  width:530px;
+  /* height:400px; */
+  display:table-cell;
+  text-align:center;
+  vertical-align:middle;
 }
 
 .simple-slider .prev {
@@ -445,7 +462,8 @@ tr:nth-child(odd) {
   background-repeat:no-repeat;
   cursor:pointer;
   left:-22px;
-  top:130px;
+  top:50%;
+  margin-top:-20px;
 }
 
 .simple-slider .prev:hover {
@@ -461,7 +479,8 @@ tr:nth-child(odd) {
   background-repeat:no-repeat;
   cursor:pointer;
   right:-22px;
-  top:130px;
+  top:50%;
+  margin-top:-20px;
 }
 
 .simple-slider .next:hover {
@@ -2384,6 +2403,7 @@ h3 a:hover {
   font-weight:bold;
   font-size:11px;
   color:#423f49;
+  margin-bottom:5px;
 }
 
 .event-program {
@@ -3710,7 +3730,7 @@ ol.alternate-2 h3 {
   font-weight:normal;
   text-transform:none;
   padding-left:0;
-  white-space:nowrap;
+  /* white-space:nowrap; */
 }
 
 .project-header hr {
@@ -3740,8 +3760,8 @@ ol.alternate-2 h3 {
 }
 
 .review-preview .pic img {
-  width:82px;
-  height:82px;
+  /* width:82px;
+  height:82px; */
   behavior:url(PIE.htc);
   position:relative;
   display:block;
@@ -4051,7 +4071,7 @@ table.timeline h3 {
 }
 
 .leaders-item {
-  width:220px;
+  width:365px;
   overflow:hidden;
   float:left;
   margin:0 70px 36px 0;
@@ -5236,7 +5256,7 @@ table.timeline h3 {
   position:absolute;
   right:3px;
   top:3px;
-  background:url(images/expandable-arr.png) 0 0 no-repeat;
+  background:url(/images/expandable-arr.png) 0 0 no-repeat;
 }
 
 .calc-form .expandable-content {
@@ -5264,32 +5284,32 @@ table.timeline h3 {
   padding-bottom:7px;
 }
 
-.support-calc-form .form-footer-alt {
+.calc-form .form-footer-alt {
   background:#ffe33e;
   margin:0 -20px -20px -20px;
   padding:20px;
 }
 
-.support-calc-form .form-footer-alt h3 {
+.calc-form .form-footer-alt h3 {
   font-size:20px;
   margin:10px 0 19px 0;
 }
 
-.support-calc-form .form-footer-alt .form-text {
+.calc-form .form-footer-alt .form-text {
   width:233px;
 }
 
-.support-calc-form .form-footer-alt .form-row {
+.calc-form .form-footer-alt .form-row {
   margin:0 -20px 12px 0;
 }
 
-.support-calc-form .form-footer-alt .form-item {
+.calc-form .form-footer-alt .form-item {
   width:233px;
   float:left;
   margin:0 17px 0 0;
 }
 
-.support-calc-form .form-text {
+.calc-form .form-text {
   width:166px;
 }
 

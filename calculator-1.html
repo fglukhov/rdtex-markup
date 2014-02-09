@@ -200,8 +200,19 @@
                   <option value="3">Опция 3</option>
                 </select>
               </div>
-              <div class="form-footer fc">
-                <input type="submit" value="Отправить" class="button form-submit"/>
+              <div class="form-footer-alt fc">
+                <h3>отправить заявку на расчет</h3>
+                <div class="form-row fc">
+                  <div class="form-item">
+                    <label for="calc_name" class="placeholder">Ваше имя</label>
+                    <input name="calc_name" id="calc_name" class="form-text" required />
+                  </div>
+                  <div class="form-item errors-right">
+                    <label for="calc_email" class="placeholder">E-mail</label>
+                    <input name="calc_email" id="calc_email" class="form-text form-email" required />
+                  </div>
+                </div>
+                <input type="submit" value="Отправить заявку" class="button button-2 form-submit" disabled />
               </div>
             </div>
             
