@@ -491,7 +491,7 @@ function makeup() {
   if ($(".page-text img").length) {
     $('.page-text img').filter(function() {
         var $th = $(this);
-        return !$th.prev('img').length && !$(this).parents(".slider").length && ($th.parent().hasClass("page-text") || $th.parent("p").parent().hasClass("page-text") || $th.parent("div").parent().hasClass("page-text")) && $(this).next('img').length;
+        return !$th.prev('img').length && !$(this).parents(".slider").length && ($th.parents().hasClass("page-text")) && $(this).next('img').length;
     }).each(function() {
         
       var $th = $(this);
@@ -512,7 +512,7 @@ function makeup() {
     
     $('.page-text img').filter(function() {
         var $th = $(this);
-        return !$th.prev('img').length && !$(this).parents(".slider").length && ($th.parent().hasClass("page-text") || $th.parent("p").parent().hasClass("page-text")) && !$(this).next('img').length;
+        return !$th.prev('img').length && !$(this).parents(".slider").length && ($th.parents().hasClass("page-text")) && !$(this).next('img').length;
     }).each(function() {
         
       var $th = $(this);

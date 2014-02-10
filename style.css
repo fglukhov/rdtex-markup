@@ -5239,15 +5239,15 @@ table.timeline h3 {
   color: #423f49;
   position: relative;
   float: left;
-  padding: 5px 33px 0 20px;
+  padding: 5px 33px 4px 20px;
   margin: -6px 0 0 -20px;
   text-transform: uppercase;
-  height: 21px;
+  line-height: 20px;
 }
 
 .calc-form .expandable .trigger span {
   padding:0;
-  background:url(images/ul-g.png) 0 bottom repeat-x;
+  background:url(images/ul-g.png) 0 18px repeat-x;
 }
 
 .calc-form .expandable .trigger .arr {
