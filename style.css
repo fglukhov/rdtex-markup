@@ -4071,16 +4071,19 @@ table.timeline h3 {
 }
 
 .leaders-item {
-  width:365px;
   overflow:hidden;
-  float:left;
-  margin:0 70px 36px 0;
+  margin:0 0 40px 0;
 }
 
 .leaders-item .pic {
-  height:220px;
   overflow:hidden;
   margin:0 0 16px 0;
+  float:left;
+  margin:0 30px 0 0;
+}
+
+.leaders-item .descr {
+  overflow:hidden;
 }
 
 .leaders-item h3 {
