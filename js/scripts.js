@@ -516,7 +516,7 @@ function makeup() {
     }).each(function() {
         
       var $th = $(this);
-      if (!$th.parents(".article-pic").length) {
+      if (!$th.parents(".article-pic").length && !$th.parents("form").length) {
         $th.wrap("<div class='article-pic' />")
         if ($th.attr("title")) $th.after("<div class='title'>"+$th.attr("title")+"</div>");
         $th.parents(".article-pic").css("width",$th.width());
@@ -818,7 +818,7 @@ function openPopup(pupId) {
             flag = "";
           }
           
-          if (select.find("option").length <= 2) {
+          if (select.find("option").length > 2) {
           
             if ($(this).val() != select.val() /* || select.attr("ttl")*/) {
               dropdown.append("<div val='" + $(this).attr("value") + "'>" + flag + $(this).html() + "</div>");
@@ -875,7 +875,7 @@ function openPopup(pupId) {
           }
         });
         
-        dropdown.on("click", "div", function() {
+        dropdown.find("div").on("click",function () {
           selector.removeClass("param-sel-error");
           paramSel.removeClass("initial");
           var div = $(this);
@@ -889,13 +889,13 @@ function openPopup(pupId) {
             dropdown.find("div[val='']").remove();
           }
           dropdown.fadeOut(150, function () {
-            dropdown.find("div").show().removeClass("selected").removeClass("hidden");
-            if (select.find("option").length <= 2) {
-              div.addClass("hidden")
-            }
+            dropdown.find("div").show().removeClass("selected");
             div.addClass("selected");
             div.parents(".param-open").removeClass("param-open");
           });
+          if ($(this).attr("val")) {
+            selector.parents(".form-item").find(".error-wrapper").remove();
+          }
         });
       
       }

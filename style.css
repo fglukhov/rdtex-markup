@@ -1001,7 +1001,7 @@ tr:nth-child(odd) {
   background-color:#dcdcdc;
 }
 
-.common-form .param-selector div.hidde {
+.common-form .param-selector div.hidden {
   display:none;
 }
 
@@ -1817,7 +1817,7 @@ ul.files-list {
 
 ul.files-list li {
   background:none;
-  padding:0 0 0 60px;
+  padding:0 0 0 50px;
   margin:0 0 11px 0;
 }
 
@@ -1832,10 +1832,38 @@ ul.files-list a:visited {
 
 ul.files-list .ico {
   position:absolute;
-  left:-60px;
+  left:-50px;
   top:50%;
-  margin:-20px 0 0 0;
+  margin:-17px 0 0 0;
   display:block;
+  width:35px;
+  height:35px;
+  background-repeat:no-repeat;
+  background-position:0 0;
+}
+
+ul.files-list li:hover .ico {
+  background-position:-35px 0;
+}
+
+ul.files-list .ico-doc {
+  background-image:url(images/ico-doc.png);
+}
+
+ul.files-list .ico-xls {
+  background-image:url(images/ico-xls.png);
+}
+
+ul.files-list .ico-ppt {
+  background-image:url(images/ico-ppt.png);
+}
+
+ul.files-list .ico-txt {
+  background-image:url(images/ico-txt.png);
+}
+
+ul.files-list .ico-pdf {
+  background-image:url(images/ico-pdf.png);
 }
 
 ul.files-list .cont {
@@ -3122,8 +3150,8 @@ hr.small + h3 {
 
 .service-header h1,
 .solution-header h1 {
-  font-size:26px;
-  line-height:28px;
+  font-size:24px;
+  line-height:29px;
   margin:0 0 14px 0;
 }
 
@@ -3305,8 +3333,8 @@ hr.zigzag-2 {
 }
 
 .support-header h1 {
-  font-size:26px;
-  line-height:30px;
+  font-size:24px;
+  line-height:29px;
   overflow:hidden;
   margin:0;
 }
@@ -3676,8 +3704,8 @@ ol.alternate-2 h3 {
 }
 
 .project-header h1 {
-  font-size:30px;
-  line-height:33px;
+  font-size:24px;
+  line-height:29px;
   margin:0 0 11px 0;
 }
 
@@ -3895,8 +3923,8 @@ p + .simple-slider {
 }
 
 .press-header h1 {
-  font-size:26px;
-  line-height:30px;
+  font-size:24px;
+  line-height:29px;
   margin:0 0 18px 0;
 }
 
@@ -4780,7 +4808,7 @@ table.timeline h3 {
   height:83px;
   position:relative;
   padding:0 0 29px 0;
-  background:url(../images/shadow-220-2.png) center bottom no-repeat;
+  background:url(images/shadow-220-2.png) center bottom no-repeat;
   margin:0 0 -17px 0;
   overflow:hidden;
   z-index:1;
@@ -4800,7 +4828,7 @@ table.timeline h3 {
   position:absolute;
   left:0;
   top:0;
-  background:url(../images/action-mask-220.png) 0 0 no-repeat;
+  background:url(images/action-mask-220.png) 0 0 no-repeat;
   display:block;
 }
 
@@ -4897,12 +4925,12 @@ table.timeline h3 {
 .submenu .submenu-links .item span {
   /* float: left; */
   line-height: 18px;
-  background: url(../images/underline-7.png) 0 17px repeat-x;
+  background: url(images/underline-7.png) 0 17px repeat-x;
   color: #423f49;
 }
 
 .submenu .submenu-links .item:hover span {
-  background:url(../images/underline-8.png) 0 17px repeat-x;
+  background:url(images/underline-8.png) 0 17px repeat-x;
 }
 
 .submenu .submenu-links .act {
@@ -4950,7 +4978,7 @@ table.timeline h3 {
 .submenu .submenu-subsection,
 .section-submenu .submenu-subsection {
   float:left;
-  width:205px;
+  width:285px;
   margin:0 30px 14px 0;
 }
 
@@ -5007,6 +5035,21 @@ table.timeline h3 {
 
 .submenu-subsection li {
   margin:0 0 8px 0;
+  padding:0;
+  background:none;
+}
+
+.submenu-subsection-one {
+  float:left;
+  width:285px;
+  margin:0 30px 7px 0;
+min-height: 32px;
+}
+
+.submenu-subsection-one div {
+  font-family:'Arial',sans-serif;
+  font-size:11px;
+  line-height:16px;
   padding:0;
   background:none;
 }
@@ -5180,7 +5223,7 @@ table.timeline h3 {
 }
 
 .calc-form .param-selector .arr {
-  background: url(/images/sel-arrow-alt.png) 0 0 no-repeat; 
+  background: url(images/sel-arrow-alt.png) 0 0 no-repeat; 
   width: 29px;
   height: 29px;
   right: 0px;
@@ -5195,11 +5238,20 @@ table.timeline h3 {
 
 .calc-form .form-text,
 .calc-form .form-textarea {
-  width:236px;
+  width:236px !important;
   text-transform:none;
   color:#423f49;
   font-weight:normal;
   font-size:13px;
+}
+
+.calc-form .form-text {
+  height:33px;
+}
+
+.calc-form .placeholder {
+  height:32px;
+  line-height:32px;
 }
 
 .calc-form .form-footer {
@@ -5259,7 +5311,7 @@ table.timeline h3 {
   position:absolute;
   right:3px;
   top:3px;
-  background:url(/images/expandable-arr.png) 0 0 no-repeat;
+  background:url(images/expandable-arr.png) 0 0 no-repeat;
 }
 
 .calc-form .expandable-content {
@@ -5312,7 +5364,7 @@ table.timeline h3 {
   margin:0 17px 0 0;
 }
 
-.calc-form .form-text {
+.support-calc-form .form-text {
   width:166px;
 }
 
@@ -5334,4 +5386,18 @@ table.timeline h3 {
 
 .controlDiv {
   cursor:pointer;
+}
+
+.submenu .submenu-subsection-one div {
+  font-size:12px;
+}
+
+.common-form .form-captcha img {
+  width:110px;
+  float:left;
+}
+
+.common-form .form-captcha .form-text {
+  width:110px !important;
+  float:right;
 }
