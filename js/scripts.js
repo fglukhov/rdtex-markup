@@ -55,6 +55,15 @@ $(window).scroll(function() {
       });
     }
   }
+  
+  if ($(window).scrollTop() > $(".header-top").outerHeight() && $(".main-menu-wrapper").length) {
+    $(".main-menu-wrapper").addClass("menu-fixed");
+    $(".header-top").css("margin-bottom",$(".main-menu").height())
+  } else {
+    $(".main-menu-wrapper").removeClass("menu-fixed");
+    $(".header-top").css("margin-bottom",0)
+  }
+  
 });
 
 $(document).ready(function () {
@@ -590,6 +599,16 @@ function validateForms() {
     
     
   });  
+  
+  $(document).mouseup(function (e) {
+    var container = $("form");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        $(".error-wrapper").remove();
+    }
+  });
   
 }
 
