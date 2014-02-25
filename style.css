@@ -500,17 +500,17 @@ tr:nth-child(odd) {
   padding: 0 20px;
   cursor:pointer;
   text-decoration:none;
-  transition:background-color .2s ease, color .2s ease;
+  transition:background-color .1s ease, color .1s ease;
 }
 
-.button-2,
-.button:hover {
+.button-2 {
   color:#fff !important;
   background-color:#3f3f47;
 }
 
+.button:hover,
 .button-2:hover {
-  background-color:#ffe33d;
+  background-color:#ffcc00;
   color:#3f3f47 !important;
 }
 
