@@ -68,6 +68,13 @@ $(window).scroll(function() {
 
 $(document).ready(function () {
 
+  $(".main-subscribe .subscribe-link").click(function() {
+    $(this).hide();
+    $(".subscribe-form").fadeIn(150);
+  });
+  
+  
+
   if ($(".scrollable-cont").length) {
     $(".scrollable-cont").mCustomScrollbar({
       advanced:{
@@ -327,6 +334,13 @@ $(document).ready(function () {
     wrap:'circular'
   });
   
+  
+  if ($(".events-carousel").length) {
+    $(".events-carousel .jcarousel").jcarousel({
+      scroll:1,
+      initCallback: evInit
+    });
+  }
   
   
   // Documents-carousel
@@ -977,3 +991,8 @@ jQuery.extend(jQuery.validator.messages, {
     max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
     min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
 });
+
+function evInit(carousel,state) {
+  carousel.list.parent().parent().find(".jcarousel-prev").html("Назад");
+  carousel.list.parent().parent().find(".jcarousel-next").html("Вперед");
+}

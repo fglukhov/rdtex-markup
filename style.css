@@ -37,7 +37,7 @@ html,body {
   line-height:17px;
   color:#606060;
   height: 100%;
-  min-width:1000px;
+  min-width:1100px;
   font-family:Verdana, Helvetica, sans-serif;
 }
 
@@ -335,7 +335,7 @@ tr:nth-child(odd) {
   width:980px;
   margin:0 auto;
   position:relative;
-  padding:0 10px;
+  padding:0 60px;
 }
 
 .l-col {
@@ -1280,6 +1280,7 @@ tr:nth-child(odd) {
   width:100%;
   height:305px;
   min-width:1000px;
+  cursor:pointer;
 }
 
 .main-slider .slide-pic {
@@ -1349,7 +1350,7 @@ tr:nth-child(odd) {
 }
 
 .mainpage-company {
-  margin:45px 0 0 0;
+  margin:30px 0 0 0;
 }
 
 .mainpage-company h3 {
@@ -5550,4 +5551,190 @@ min-height: 32px;
 
 .menu-fixed .main-menu li.sm-act {
   background-position: center bottom, 0 21px;
+}
+
+.main-subscribe {
+  float:right;
+  width:222px;
+}
+
+.main-subscribe .subscribe-link {
+  background: url(images/ico-subscribe.png) 0 7px no-repeat;
+  padding: 6px 0 0 32px;
+  cursor:pointer;
+}
+
+.main-subscribe .subscribe-link span {
+  border-bottom:1px dotted #ffe33d;
+}
+
+.main-subscribe .subscribe-form {
+  display:none;
+}
+
+.subscribe-form .form-item {
+  float:left;
+}
+
+.subscribe-form .form-text {
+  width:182px;
+}
+
+.subscribe-form .form-submit {
+  float: left;
+  padding: 0;
+  width: 36px;
+  margin: 0 0 0 4px;
+}
+
+.events-carousel h3 {
+  text-align: center;
+  font-size: 23px;
+  margin: 19px 0 18px 0;
+}
+
+.events-carousel .jcarousel-container {
+  background:url(images/hr-big.png) 0 20px repeat-x;
+  min-height:111px;
+}
+
+.events-carousel .jcarousel-clip {
+  width:539px;
+  overflow:hidden;
+  margin:0 auto;
+}
+
+.events-carousel .jcarousel-item {
+  width:479px;
+  padding:0 30px;
+  background:#fff;
+  list-style:none;
+}
+
+.events-carousel a,
+.events-carousel a:visited {
+  display:block;
+  color:#423f49;
+  text-decoration:none;
+}
+
+.events-carousel a span {
+  display:block;
+}
+
+.events-carousel .ev-date {
+  width:147px;
+  height:50px;
+  background:#ffe33d;
+  float:left;
+  margin:0 3px 0 0;
+}
+
+.events-carousel .ev-time {
+  width:114px;
+  height:46px;
+  border:2px solid #ffe23d;
+  float:left;
+  margin:0 3px 0 0;
+  font-size:11px;
+  line-height:14px;
+  text-transform:uppercase;
+  font-weight:bold;
+}
+
+.events-carousel .ev-cat {
+  width:204px;
+  height:46px;
+  border:2px solid #ffe23d;
+  float:left;
+  font-size:11px;
+  line-height:14px;
+  text-transform:uppercase;
+  font-weight:bold;
+}
+
+.events-carousel .ev-date .num {
+  font-family: 'tondo_corpbold';
+  font-size: 36px;
+  line-height: 36px;
+  width: 50px;
+  float: left;
+  text-align: right;
+  padding: 8px 5px 0 10px;
+}
+
+.events-carousel .ev-date .month-day {
+  font-size: 11px;
+  line-height: 14px;
+  text-transform: uppercase;
+  float: left;
+  font-weight: bold;
+  width: 82px;
+  padding: 11px 0 0 0;
+}
+
+.events-carousel .ev-date .month-day b {
+  font-size:12px;
+}
+
+.events-carousel .ev-time .cont {
+  display:table-cell;
+  height:46px;
+  width:114px;
+  vertical-align:middle;
+  text-align:center;
+}
+
+.events-carousel .ev-cat .cont {
+  display:table-cell;
+  height:46px;
+  width:204px;
+  vertical-align:middle;
+  padding:0 0 0 20px;
+}
+
+.events-carousel .ttl {
+  font-size:11px;
+  line-height:20px;
+  text-align:center;
+  clear:left;
+  padding:14px 0 0 0;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+
+.events-carousel .jcarousel-prev {
+  position:absolute;
+  left:0;
+  top: 13px;
+  height: 30px;
+  padding: 3px 30px 0 30px;
+  background:#fff url(images/arr-prev.png) 0 0 no-repeat;
+  cursor:pointer;
+}
+
+.events-carousel .jcarousel-prev:hover {
+  background-position:0 -70px;
+}
+
+.events-carousel .jcarousel-prev-disabled {
+  display:none !important;
+}
+
+.events-carousel .jcarousel-next {
+  position:absolute;
+  right:0;
+  top:13px;
+  padding:3px 30px 0 30px;
+  background:#fff url(images/arr-next.png) right 0 no-repeat;
+  cursor:pointer;
+  height:30px;
+}
+
+.events-carousel .jcarousel-next:hover {
+  background-position:right -70px;
+}
+
+.events-carousel .jcarousel-next-disabled {
+  display:none !important;
 }
