@@ -5599,13 +5599,13 @@ min-height: 32px;
 }
 
 .events-carousel .jcarousel-clip {
-  width:539px;
+  width:559px;
   overflow:hidden;
   margin:0 auto;
 }
 
 .events-carousel .jcarousel-item {
-  width:479px;
+  width:499px;
   padding:0 30px;
   background:#fff;
   list-style:none;
@@ -5631,7 +5631,7 @@ min-height: 32px;
 }
 
 .events-carousel .ev-time {
-  width:124px;
+  width:134px;
   height:46px;
   border:2px solid #ffe23d;
   float:left;
@@ -5644,7 +5644,7 @@ min-height: 32px;
 }
 
 .events-carousel .ev-cat {
-  width:194px;
+  width:204px;
   height:46px;
   border:2px solid #ffe23d;
   float:left;
@@ -5681,7 +5681,7 @@ min-height: 32px;
 .events-carousel .ev-time .cont {
   display:table-cell;
   height:46px;
-  width:124px;
+  width:134px;
   vertical-align:middle;
   text-align:center;
 }
@@ -5689,7 +5689,7 @@ min-height: 32px;
 .events-carousel .ev-cat .cont {
   display:table-cell;
   height:46px;
-  width:194px;
+  width:204px;
   vertical-align:middle;
   padding:0 0 0 20px;
 }
