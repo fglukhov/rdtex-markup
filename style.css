@@ -1313,6 +1313,7 @@ tr:nth-child(odd) {
   width: 213px;
   margin: 0 42px 0 0;
   padding: 36px 0 0 0;
+  cursor:pointer;
 }
 
 .main-slider .slider-controls .cont {
@@ -4940,6 +4941,12 @@ table.timeline h3 {
 
 .submenu .submenu-links .item:hover span {
   background:url(images/underline-8.png) 0 17px repeat-x;
+}
+
+.submenu .submenu-links .item a,
+.submenu .submenu-links .item a:visited {
+  color: #423f49;
+  text-decoration:none;
 }
 
 .submenu .submenu-links .act {
