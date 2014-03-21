@@ -2416,7 +2416,7 @@ h3 a:hover {
 }
 
 .event-header h1 {
-  font:24px;
+  font-size:24px;
   line-height:29px;
 }
 
@@ -4894,7 +4894,7 @@ table.timeline h3 {
   background-color:#FFF;
   z-index:6;
   width:980px;
-  behavior:url(PIE.htc);
+  /* behavior:url(PIE.htc); */
   -webkit-box-shadow:0 2px 20px -5px #444;
   -moz-box-shadow:0 2px 20px -5px #444;
   box-shadow:0 2px 20px -5px #444;
